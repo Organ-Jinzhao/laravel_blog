@@ -1,0 +1,12 @@
+2019-09-09 16:57:42 pid:55731 Workerman[gateway-worker:server] start in DEBUG mode
+2019-09-09 16:59:13 pid:55731 worker[Gateway:55735] exit with status 11
+2019-09-09 16:59:34 pid:55731 worker[Gateway:55755] exit with status 11
+2019-09-09 16:59:40 pid:55731 worker[Gateway:55761] exit with status 11
+2019-09-09 17:00:10 pid:55731 worker[Gateway:55764] exit with status 11
+2019-09-09 17:00:51 pid:55731 worker[Gateway:55769] exit with status 11
+2019-09-09 17:07:11 pid:55731 worker[Gateway:55774] exit with status 11
+2019-09-09 21:37:48 pid:55731 Workerman[artisan] stopping ...
+2019-09-09 21:37:50 pid:55731 worker[BusinessWorker:55736] exit with status 9
+2019-09-09 21:37:50 pid:55731 worker[Gateway:55820] exit with status 9
+2019-09-09 21:37:50 pid:55731 worker[Register:55737] exit with status 9
+2019-09-09 21:37:50 pid:55731 Workerman[artisan] has been stopped
