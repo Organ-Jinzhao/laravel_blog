@@ -4,7 +4,6 @@
 @section('content')
     
         @include('home/nav')
-    </header>
 
     <style type="text/css">
         body {background: url({{ asset('/home/images/about-bg.jpg')}});}

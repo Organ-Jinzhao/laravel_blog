@@ -34,8 +34,17 @@ class AppServiceProvider extends ServiceProvider
 
         //前台导航公共数据
         view()->composer('home.nav', function ($view) {
-            $nav = \App\Models\Nav::where('status',1)->orderBy('sort','asc')->get()->toArray();
+            $navs = \App\Models\Nav::where('status',1)->orderBy('sort','asc')->get()->toArray();
+            //赋予默认值
+            $nav = $navs[0];
+            foreach($navs as $val){
+                //查找当前路由属于哪个导航下，重新复制
+                if(strpos( $_SERVER['REQUEST_URI'],$val['url']) !== false){
+                    $nav = $val;
+                 }
+            }
             $view->with('nav',$nav);
+            $view->with('navs',$navs);
         });
 
     }

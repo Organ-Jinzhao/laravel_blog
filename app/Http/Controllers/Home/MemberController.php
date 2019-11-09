@@ -49,7 +49,7 @@ class MemberController extends HomebaseController
     //登录表单
     public function showLoginForm()
     {
-        return view('home.member.login');
+        return view('home.member.logins');
     }
 
     public function redirectTo()

@@ -1,7 +1,6 @@
 <?php $__env->startSection('content'); ?>
     
         <?php echo $__env->make('home/nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    </header>
 
     <style type="text/css">
         body {background: url(<?php echo e(asset('/home/images/about-bg.jpg')); ?>);}

@@ -4,7 +4,6 @@
 @section('content')
 
   @include('home/nav')
-</header>
 <style type="text/css">
 body{background-color: #f1f2f3;}
 .blogitem{float: inherit;background: none;}

@@ -4,7 +4,6 @@
 <?php $__env->startSection('content'); ?>
 
   <?php echo $__env->make('home/nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-</header>
 <link rel="stylesheet" type="text/css" href="<?php echo e(asset('/home/css/image.css')); ?>" />
 <h1 class="t_nav"><span>这里有你喜欢的博客空间导航条图片，快收藏！</span><a href="#" class="n2">导航条下载</a></h1>
 <div class="content">

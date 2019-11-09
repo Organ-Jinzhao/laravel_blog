@@ -3,7 +3,6 @@
 @section('content')
 
         @include('home/nav')
-    </header>
     <style type="text/css">
         body {
             background: url({{ asset('/home/images/lmlblog.jpg')}}) no-repeat center top fixed;

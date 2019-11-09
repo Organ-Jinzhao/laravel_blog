@@ -1,14 +1,13 @@
 
 
-@foreach($nav as $val)
-    @if($val['url'] == $_SERVER['REQUEST_URI'])
+
 <body style="cursor: url({{asset('/home/images/cursor.gif')}}),auto;">
-<header id="container2" style="background: #226039 url({{$val['image']}}) center 0 scroll no-repeat; background-size: 100% 330px;" >
+<header id="container2" style="background: #226039 url({{$nav['image']}}) center 0 scroll no-repeat; background-size: 100% 330px;" >
     <div class="popover left" data-easein="cardInLeft" data-easeout="cardOutLeft" id="pop7">
         <div class="arrow"></div>
         <div class="popover-inner">
             <div class="popover-content">
-                <p>{{$val['left_text']}}</p>
+                <p>{{$nav['left_text']}}</p>
             </div>
         </div>
     </div>
@@ -16,12 +15,10 @@
         <div class="arrow"></div>
         <div class="popover-inner">
             <div class="popover-content">
-                <p>{{$val['right_text']}}</p>
+                <p>{{$nav['right_text']}}</p>
             </div>
         </div>
     </div>
-    @endif
-    @endforeach
 
 
 
@@ -54,11 +51,11 @@
 </div>
 <div id="nav" class="menu-container">
     <ul id="menu-0" class="menu">
-        @foreach($nav as $val)
+        @foreach($navs as $val)
             <li id="menu-item-1" class="menu-item-1"><a href="{{$val['url']}}">{{$val['name']}}</a></li>
         @endforeach
-         <li style="float:right;"><a href="/" style="color:#00FFFF;">注册</a></li>
-            <li style="float:right;"><a href="/" style="color:#00FFFF;">登录</a></li>
+            <li style="float:right;"><a href="/logins" style="color:#00FFFF;">登录</a></li>
 
     </ul>
 </div>
+</header>
