@@ -1,9 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
         <?php echo $__env->make('home/nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-    </header>
-    <div class="mainContent">
+        <div class="mainContent">
         <div style="position: absolute;right: 40px;"> <img src="<?php echo e(asset('/home/images/music.png')); ?>" border="0">
             <p style="text-align: center;">
                 <embed wmode="transparent" width="25" height="20" src="/home/http://www.lmlblog.com/time/images/singlemp3player.swf?file=http://www.lmlblog.com/time/images/mengxianglvxing.mp3&repeatPlay=true&songVolume=30"

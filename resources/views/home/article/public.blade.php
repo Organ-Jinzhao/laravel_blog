@@ -4,9 +4,7 @@
 @section('content')
 
         @include('home/nav')
-
-    </header>
-    <div class="mainContent">
+        <div class="mainContent">
         <div style="position: absolute;right: 40px;"> <img src="{{asset('/home/images/music.png')}}" border="0">
             <p style="text-align: center;">
                 <embed wmode="transparent" width="25" height="20" src="/home/http://www.lmlblog.com/time/images/singlemp3player.swf?file=http://www.lmlblog.com/time/images/mengxianglvxing.mp3&repeatPlay=true&songVolume=30"

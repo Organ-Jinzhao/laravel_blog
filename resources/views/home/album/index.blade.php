@@ -4,7 +4,6 @@
 @section('content')
 
   @include('home/nav')
-</header>
 <link rel="stylesheet" type="text/css" href="{{asset('/home/css/image.css')}}" />
 <h1 class="t_nav"><span>这里有你喜欢的博客空间导航条图片，快收藏！</span><a href="#" class="n2">导航条下载</a></h1>
 <div class="content">
