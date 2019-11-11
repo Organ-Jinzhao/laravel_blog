@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>登录</title>
@@ -149,60 +150,60 @@
 
 	//注册
 	function register(){
-		var username = $("#register-username").val(),
-			password = $("#register-password").val(),
-			repassword = $("#register-repassword").val(),
-			code = $("#register-code").val(),
-			flag = false,
-			validatecode = null;
-		//判断用户名密码是否为空
-		if(username == ""){
-			$.pt({
-        		target: $("#register-username"),
-        		position: 'r',
-        		align: 't',
-        		width: 'auto',
-        		height: 'auto',
-        		content:"用户名不能为空"
-        	});
-			flag = true;
-		}
-		if(password == ""){
-			$.pt({
-        		target: $("#register-password"),
-        		position: 'r',
-        		align: 't',
-        		width: 'auto',
-        		height: 'auto',
-        		content:"密码不能为空"
-        	});
-			flag = true;
-		}else{
-			if(password != repassword){
-				$.pt({
-	        		target: $("#register-repassword"),
-	        		position: 'r',
-	        		align: 't',
-	        		width: 'auto',
-	        		height: 'auto',
-	        		content:"两次输入的密码不一致"
-	        	});
-				flag = true;
-			}
-		}
-		//用户名只能是15位以下的字母或数字
-		var regExp = new RegExp("^[a-zA-Z0-9_]{1,15}$");
-		if(!regExp.test(username)){
-			$.pt({
-        		target: $("#register-username"),
-        		position: 'r',
-        		align: 't',
-        		width: 'auto',
-        		height: 'auto',
-        		content:"用户名必须为15位以下的字母或数字"
-        	});
-			flag = true;
-		}
+		var reg = {};
+		var flag = false;
+		reg.username = $("#register-username").val();
+		reg.regpassword = $("#register-password").val();
+		reg.repassword = $("#register-repassword").val();
+		// 	validatecode = null;
+		// //判断用户名密码是否为空
+		// if(username == ""){
+		// 	$.pt({
+        // 		target: $("#register-username"),
+        // 		position: 'r',
+        // 		align: 't',
+        // 		width: 'auto',
+        // 		height: 'auto',
+        // 		content:"用户名不能为空"
+        // 	});
+		// 	flag = true;
+		// }
+		// if(password == ""){
+		// 	$.pt({
+        // 		target: $("#register-password"),
+        // 		position: 'r',
+        // 		align: 't',
+        // 		width: 'auto',
+        // 		height: 'auto',
+        // 		content:"密码不能为空"
+        // 	});
+		// 	flag = true;
+		// }else{
+		// 	if(password != repassword){
+		// 		$.pt({
+	    //     		target: $("#register-repassword"),
+	    //     		position: 'r',
+	    //     		align: 't',
+	    //     		width: 'auto',
+	    //     		height: 'auto',
+	    //     		content:"两次输入的密码不一致"
+	    //     	});
+		// 		flag = true;
+		// 	}
+		// }
+		// //用户名只能是15位以下的字母或数字
+		// var regExp = new RegExp("^[a-zA-Z0-9_]{1,15}$");
+		// if(!regExp.test(username)){
+		// 	$.pt({
+        // 		target: $("#register-username"),
+        // 		position: 'r',
+        // 		align: 't',
+        // 		width: 'auto',
+        // 		height: 'auto',
+        // 		content:"用户名必须为15位以下的字母或数字"
+        // 	});
+		// 	flag = true;
+		// }
 		//检查用户名是否已经存在
 		//调后台代码检查用户名是否已经被注册
 
@@ -220,6 +221,10 @@
 		// 	flag = true;
 		// }
 
+		console.log(reg);
+		$.post("/member/register",{"reg":reg,"_token":"{{ csrf_token() }}"},function(result){
+			cosole.log('9090');
+		});
 
 		if(flag){
 			return false;
@@ -469,7 +474,7 @@ body{
 					<div class="pad input-container">
 						<section class="content">
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" name="name" type="text" id="register-username"
+								<input class="input__field input__field--hideo"  type="text" id="register-username"
 									autocomplete="off" placeholder="请输入用户名" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="register-username">
 									<i class="fa fa-fw fa-user icon icon--hideo"></i>
@@ -477,21 +482,21 @@ body{
 								</label>
 							</span>
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" name="password" type="password" id="register-password" placeholder="请输入密码" maxlength="15"/>
+								<input class="input__field input__field--hideo"  type="password" id="register-password" placeholder="请输入密码" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="register-password">
 									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" name="password_confirmation" type="password" id="register-repassword" placeholder="请确认密码" maxlength="15"/>
+								<input class="input__field input__field--hideo"  type="password" id="register-repassword" placeholder="请确认密码" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="register-repassword">
 									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="register-code" autocomplete="on" placeholder="请输入手机号码"/>
+								<input class="input__field input__field--hideo" type="text" id="register-phone" autocomplete="on" placeholder="请输入手机号码"/>
 								<label class="input__label input__label--hideo" for="register-code">
 									<i class="fa fa-fw fa-wifi icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
