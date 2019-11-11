@@ -34,6 +34,7 @@ Route::group(['namespace'=>'Home','middleware'=>'visitor'],function (){
 });
 
 
+Route::post('/member/register', 'Home\MemberController@register')->name('home.member.register');
 
 
 
@@ -45,19 +46,16 @@ Route::group(['namespace' => 'Home'], function () {
     Route::post('/wechatNotify', 'PayController@wechatNotify')->name('wechatNofity');
 });
 
-Route::get('logins', 'Home\MemberController@showLoginForm')->name('/member/login');
-
-
 ////会员-不需要认证
-//Route::group(['namespace'=>'Home','prefix'=>'member'],function (){
-//    //注册
+Route::group(['namespace'=>'Home','prefix'=>'member'],function (){
+    //注册
 //    Route::get('register', 'MemberController@showRegisterForm')->name('home.member.showRegisterForm');
-//    Route::post('register', 'MemberController@register')->name('home.member.register');
-//    //登录
-//    Route::get('login', 'MemberController@showLoginForm')->name('home.member.showLoginForm');
-//    Route::post('login', 'MemberController@login')->name('home.member.login');
-//
-//});
+    Route::post('register', 'MemberController@register')->name('home.member.register');
+    //登录
+    Route::get('logins', 'MemberController@showLoginForm')->name('home.member.showLoginForm');
+    Route::post('logins', 'MemberController@login')->name('home.member.login');
+
+});
 ////会员-需要认证
 //Route::group(['namespace'=>'Home','prefix'=>'member','middleware'=>'member'],function (){
 //    //个人中心

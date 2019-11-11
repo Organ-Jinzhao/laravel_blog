@@ -31,6 +31,7 @@ class MemberController extends HomebaseController
     //注册
     public function register(Request $request)
     {
+        dd($request->reg);
         $this->validate($request,[
             'captcha' => 'required|captcha',
             'name' => 'required',
