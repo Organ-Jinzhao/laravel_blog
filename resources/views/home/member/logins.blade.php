@@ -20,6 +20,7 @@
 <script src="{{asset('login/js/spop.min.js')}}"></script>
 <script>
 	(function() {
+
 		// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
 		if (!String.prototype.trim) {
 			(function() {
@@ -97,67 +98,92 @@
 		$("#tab-3").prop("checked",true);
 	}
 
-	function login(){//登录
-		var username = $("#login-username").val(),
-			password = $("#login-password").val(),
-			validatecode = null,
-			flag = false;
-		//判断用户名密码是否为空
-		if(username == ""){
-			$.pt({
-        		target: $("#login-username"),
-        		position: 'r',
-        		align: 't',
-        		width: 'auto',
-        		height: 'auto',
-        		content:"用户名不能为空"
-        	});
-			flag = true;
-		}
-		if(password == ""){
-			$.pt({
-        		target: $("#login-password"),
-        		position: 'r',
-        		align: 't',
-        		width: 'auto',
-        		height: 'auto',
-        		content:"密码不能为空"
-        	});
-			flag = true;
-		}
-		//用户名只能是15位以下的字母或数字
-		var regExp = new RegExp("^[a-zA-Z0-9_]{1,15}$");
-		if(!regExp.test(username)){
-			$.pt({
-        		target: $("#login-username"),
-        		position: 'r',
-        		align: 't',
-        		width: 'auto',
-        		height: 'auto',
-        		content:"用户名必须为15位以下的字母或数字"
-        	});
-			flag = true;
-		}
+	{{--function login(){//登录--}}
+		{{--var login = {};--}}
+			{{--login.name = $("#login-username").val();--}}
+			{{--login.password = $("#login-password").val();--}}
+			{{--login.captcha = $("#login-captcha").val();--}}
+		{{--$.post("/member/login",{"login":login,"_token":"{{ csrf_token() }}"},function(result){--}}
 
-		if(flag){
-			return false;
-		}else{//登录
-			//调用后台登录验证的方法
-			alert('登录成功');
-			return false;
-		}
-	}
+			{{--console.log(result.msg);--}}
+			// if(result.code == 1 ){
+			// 	spop({
+			// 		template: '<h4 class="spop-title">'+result.msg+'</h4>即将于3秒后返回登录',
+			// 		position: 'top-center',
+			// 		style: 'success',
+			// 		autoclose: 3000,
+			// 		onOpen : function(){
+			// 			var second = 2;
+			// 			var showPop = setInterval(function(){
+			// 				if(second == 0){
+			// 					clearInterval(showPop);
+			// 				}
+			// 				$('.spop-body').html('<h4 class="spop-title">注册成功</h4>即将于'+second+'秒后返回登录');
+			// 				second--;
+			// 			},1000);
+			// 		},
+			// 		onClose : function(){
+			// 			goto_login();
+			// 		}
+			// 	});
+			// }else{
+			// 	spop({
+			// 		template: '<h4 class="spop-title">'+result.msg+'</h4>',
+			// 		position: 'top-center',
+			// 		style: 'error',
+			// 		autoclose: 2000,
+			// 	});
+			// }
+		{{--});--}}
+		{{--判断用户名密码是否为空--}}
+		{{--if(username == ""){--}}
+			{{--$.pt({--}}
+        		{{--target: $("#login-username"),--}}
+        		{{--position: 'r',--}}
+        		{{--align: 't',--}}
+        		{{--width: 'auto',--}}
+        		{{--height: 'auto',--}}
+        		{{--content:"用户名不能为空"--}}
+        	{{--});--}}
+			{{--flag = true;--}}
+		{{--}--}}
+		{{--if(password == ""){--}}
+			{{--$.pt({--}}
+        		{{--target: $("#login-password"),--}}
+        		{{--position: 'r',--}}
+        		{{--align: 't',--}}
+        		{{--width: 'auto',--}}
+        		{{--height: 'auto',--}}
+        		{{--content:"密码不能为空"--}}
+        	{{--});--}}
+			{{--flag = true;--}}
+		{{--}--}}
+		{{--//用户名只能是15位以下的字母或数字--}}
+		{{--var regExp = new RegExp("^[a-zA-Z0-9_]{1,15}$");--}}
+		{{--if(!regExp.test(username)){--}}
+			{{--$.pt({--}}
+        		{{--target: $("#login-username"),--}}
+        		{{--position: 'r',--}}
+        		{{--align: 't',--}}
+        		{{--width: 'auto',--}}
+        		{{--height: 'auto',--}}
+        		{{--content:"用户名必须为15位以下的字母或数字"--}}
+        	{{--});--}}
+			{{--flag = true;--}}
+		{{--}--}}
+
+	{{--}--}}
 
 	//注册
 	function register(){
 		var reg = {};
-		var flag = false;
-		reg.username = $("#register-username").val();
-		reg.regpassword = $("#register-password").val();
-		reg.repassword = $("#register-repassword").val();
-		// 	validatecode = null;
-		// //判断用户名密码是否为空
-		// if(username == ""){
+		reg.name = $("#register-username").val();
+		reg.password = $("#register-password").val();
+		reg.password_confirmation = $("#register-repassword").val();
+		reg.phone = $("#register-phone").val();
+		reg.captcha = $("#register-captcha").val();
+		//判断用户名密码是否为空
+		// if(reg.username == ""){
 		// 	$.pt({
         // 		target: $("#register-username"),
         // 		position: 'r',
@@ -166,7 +192,6 @@
         // 		height: 'auto',
         // 		content:"用户名不能为空"
         // 	});
-		// 	flag = true;
 		// }
 		// if(password == ""){
 		// 	$.pt({
@@ -177,7 +202,6 @@
         // 		height: 'auto',
         // 		content:"密码不能为空"
         // 	});
-		// 	flag = true;
 		// }else{
 		// 	if(password != repassword){
 		// 		$.pt({
@@ -188,7 +212,6 @@
 	    //     		height: 'auto',
 	    //     		content:"两次输入的密码不一致"
 	    //     	});
-		// 		flag = true;
 		// 	}
 		// }
 		// //用户名只能是15位以下的字母或数字
@@ -220,36 +243,37 @@
 		//        });
 		// 	flag = true;
 		// }
-
-		console.log(reg);
 		$.post("/member/register",{"reg":reg,"_token":"{{ csrf_token() }}"},function(result){
-			cosole.log('9090');
+			console.log(result.msg);
+			if(result.code == 1 ){
+				spop({
+					template: '<h4 class="spop-title">'+result.msg+'</h4>即将于3秒后返回登录',
+					position: 'top-center',
+					style: 'success',
+					autoclose: 3000,
+					onOpen : function(){
+						var second = 2;
+						var showPop = setInterval(function(){
+							if(second == 0){
+								clearInterval(showPop);
+							}
+							$('.spop-body').html('<h4 class="spop-title">注册成功</h4>即将于'+second+'秒后返回登录');
+							second--;
+						},1000);
+					},
+					onClose : function(){
+						goto_login();
+					}
+				});
+			}else{
+				spop({
+					template: '<h4 class="spop-title">'+result.msg+'</h4>',
+					position: 'top-center',
+					style: 'error',
+					autoclose: 2000,
+				});
+			}
 		});
-
-		if(flag){
-			return false;
-		}else{//注册
-			spop({
-				template: '<h4 class="spop-title">注册成功</h4>即将于3秒后返回登录',
-				position: 'top-center',
-				style: 'success',
-				autoclose: 3000,
-				onOpen : function(){
-					var second = 2;
-					var showPop = setInterval(function(){
-						if(second == 0){
-							clearInterval(showPop);
-						}
-						$('.spop-body').html('<h4 class="spop-title">注册成功</h4>即将于'+second+'秒后返回登录');
-						second--;
-					},1000);
-				},
-				onClose : function(){
-					goto_login();
-				}
-			});
-			return false;
-		}
 	}
 
 	//重置密码
@@ -339,12 +363,6 @@
 		}
 	}
 
-
-
-
-
-
-
 </script>
 <style type="text/css">
 html{width: 100%; height: 100%;}
@@ -378,7 +396,8 @@ body{
 		<div class="wrapper">
 			<!-- 登录页面 -->
 			<div class="login sign-in-htm">
-				<form class="container offset1 loginform">
+				<form class="container offset1 loginform" method="post" action="/member/login">
+				{{csrf_field()}}
 					<!-- 猫头鹰控件 -->
 					<div id="owl-login" class="login-owl">
 						<div class="hand"></div>
@@ -391,26 +410,36 @@ body{
 					<div class="pad input-container">
 						<section class="content">
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="login-username" 
-									autocomplete="off" placeholder="请输入用户名" tabindex="1" maxlength="15" />
+								<input class="input__field input__field--hideo" name="name" value="{{old('name')}}" type="text" id="login-username"
+									autocomplete="on" placeholder="请输入用户名" tabindex="1" maxlength="15" />
 								<label class="input__label input__label--hideo" for="login-username">
 									<i class="fa fa-fw fa-user icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="password" id="login-password" placeholder="请输入密码" tabindex="2" maxlength="15"/>
+								<input class="input__field input__field--hideo" name="password" type="password" id="login-password" placeholder="请输入密码" tabindex="2" maxlength="15"/>
 								<label class="input__label input__label--hideo" for="login-password">
 									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
+							</span>
+							<span class="input input--hideo">
+								<input class="input__field input__field--hideo" name="captcha" type="text" id="login-captcha" autocomplete="off" placeholder="请输入验证码"/>
+								<label class="input__label input__label--hideo" for="register-captcha">
+									<i class="fa fa-fw fa-wifi icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+							<span class="input input--hideo">
+								<img src="{{captcha_src()}}" style="cursor: pointer" onclick="this.src='{{captcha_src()}}'+Math.random()" alt="验证码">
 							</span>
 						</section>
 					</div>
 					<div class="form-actions">
 						<a tabindex="4" class="btn pull-left btn-link text-muted" onClick="goto_forget()">忘记密码?</a>
 						<a tabindex="5" class="btn btn-link text-muted" onClick="goto_register()">注册</a>
-						<input class="btn btn-primary" type="button" tabindex="3" onClick="login()" value="登录" 
+						<input class="btn btn-primary" type="submit" tabindex="3"  value="登录"
 							style="color:white;"/>
 					</div>
 				</form>
@@ -497,21 +526,21 @@ body{
 							</span>
 							<span class="input input--hideo">
 								<input class="input__field input__field--hideo" type="text" id="register-phone" autocomplete="on" placeholder="请输入手机号码"/>
-								<label class="input__label input__label--hideo" for="register-code">
+								<label class="input__label input__label--hideo" for="register-phone">
 									<i class="fa fa-fw fa-wifi icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" name="captcha" type="text" id="register-code" autocomplete="off" placeholder="请输入验证码"/>
-								<label class="input__label input__label--hideo" for="register-code">
+								<input class="input__field input__field--hideo"  type="text" id="register-captcha" autocomplete="off" placeholder="请输入验证码"/>
+								<label class="input__label input__label--hideo" for="register-captcha">
 									<i class="fa fa-fw fa-wifi icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>
 							</span>
 
 							<span class="input input--hideo">
-								<img src="{{captcha_src()}}" alt="">
+								<img src="{{captcha_src()}}" style="cursor: pointer" onclick="this.src='{{captcha_src()}}'+Math.random()" alt="验证码">
 							</span>
 
 
@@ -530,4 +559,44 @@ body{
 <p>更多模板：<a href="/">源码之家</a></p>
 </div>
 </body>
+
+<script>
+	(function() {
+		//登录提示
+		@if(count($errors)>0 )
+		@foreach($errors->all() as $error)
+		spop({
+			template: '<h4 class="spop-title">' + "{{$error}}" + '</h4>',
+			position: 'top-center',
+			style: 'error',
+			autoclose: 2000,
+		});
+		@break
+		@endforeach
+		@endif
+
+		@if(session('success'))
+		spop({
+			template: '<h4 class="spop-title">' + "{{session('success')}}" + '</h4>即将于3秒后返回登录',
+			position: 'top-center',
+			style: 'success',
+			autoclose: 3000,
+			onOpen: function () {
+				var second = 2;
+				var showPop = setInterval(function () {
+					if (second == 0) {
+						clearInterval(showPop);
+					}
+					$('.spop-body').html('<h4 class="spop-title">注册成功</h4>即将于' + second + '秒后返回登录');
+					second--;
+				}, 1000);
+			},
+			onClose: function () {
+				goto_login();
+			}
+		});
+		@endif
+	})();
+</script>
+
 </html>

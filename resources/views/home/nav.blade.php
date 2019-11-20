@@ -54,8 +54,13 @@
         @foreach($navs as $val)
             <li id="menu-item-1" class="menu-item-1"><a href="{{$val['url']}}">{{$val['name']}}</a></li>
         @endforeach
-            <li style="float:right;"><a href="/logins" style="color:#00FFFF;">登录</a></li>
+        @if($log)
+                <li style="float:right;"><a href="/member/logout" style="color:#00FFFF;">退出</a></li>
+                <li style="float:right;"><a href="/about" style="color:#00FFFF;">个人中心</a></li>
+        @else
+                <li style="float:right;"><a href="/member/login" style="color:#00FFFF;">登录</a></li>
 
+        @endif
     </ul>
 </div>
 </header>

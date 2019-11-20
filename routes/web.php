@@ -13,7 +13,7 @@ Route::get('/savearticle','RedisController@saveArticle')->name('savearticle');
 
 
 //前台模块路由
-Route::group(['namespace'=>'Home','middleware'=>'visitor'],function (){
+Route::group(['namespace'=>'Home','middleware'=>['visitor']],function (){
     //首页碎言碎语
     Route::get('/', 'IndexController@index')->name('home');
     Route::post('/index/more', 'IndexController@more')->name('/index/more');
@@ -46,23 +46,23 @@ Route::group(['namespace' => 'Home'], function () {
     Route::post('/wechatNotify', 'PayController@wechatNotify')->name('wechatNofity');
 });
 
-////会员-不需要认证
+//未登录
 Route::group(['namespace'=>'Home','prefix'=>'member'],function (){
     //注册
 //    Route::get('register', 'MemberController@showRegisterForm')->name('home.member.showRegisterForm');
     Route::post('register', 'MemberController@register')->name('home.member.register');
     //登录
-    Route::get('logins', 'MemberController@showLoginForm')->name('home.member.showLoginForm');
-    Route::post('logins', 'MemberController@login')->name('home.member.login');
+    Route::get('login', 'MemberController@showLoginForm')->name('home.member.showLoginForm');
+    Route::post('login', 'MemberController@login')->name('home.member.login');
 
 });
-////会员-需要认证
-//Route::group(['namespace'=>'Home','prefix'=>'member','middleware'=>'member'],function (){
-//    //个人中心
-//    Route::get('/','MemberController@index')->name('home.member');
-//    //退出
-//    Route::get('logout', 'MemberController@logout')->name('home.member.logout');
-//});
+//会员-需要认证
+Route::group(['namespace'=>'Home','prefix'=>'member','middleware'=>'member'],function (){
+    //个人中心
+    Route::get('/member','MemberController@index')->name('home.member');
+    //退出
+    Route::get('/logout', 'MemberController@logout')->name('home.member.logout');
+});
 
 
 
