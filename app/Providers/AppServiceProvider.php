@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,8 +45,14 @@ class AppServiceProvider extends ServiceProvider
                     $nav = $val;
                  }
             }
+            if(Auth::guard('member')->guest()){
+                $log = false;
+            }else{
+                $log = true;
+            }
             $view->with('nav',$nav);
             $view->with('navs',$navs);
+            $view->with('log',$log);
         });
 
     }

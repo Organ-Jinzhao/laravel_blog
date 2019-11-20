@@ -6,7 +6,7 @@
             {{csrf_field()}}
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
-                <input type="text" name="username" value="{{old('username')}}" lay-verify="required" placeholder="用户名" class="layui-input">
+                <input type="text" name="username" value="{{old('username')}}" lay-verify="required" autocomplete="on" placeholder="用户名" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
